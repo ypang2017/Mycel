@@ -1,4 +1,4 @@
-package com.mycel;
+package com.mycel.view;
 
 import com.mysql.jdbc.Statement;
 
@@ -17,7 +17,7 @@ public class MycelInfoUpdte extends JDialog implements ActionListener {
   JButton an1, an2;
   JPanel mb1, mb2, mb3, mb4;
 
-  public MycelInfoUpdte(Frame fck, String ckm, Boolean msck, MycelInfo student, int row) {
+  public MycelInfoUpdte(Frame fck, String ckm, Boolean msck, MycelInfo member, int row) {
     super(fck, ckm, msck);
     //label
     label1 = new JLabel("  Id     ");
@@ -27,16 +27,16 @@ public class MycelInfoUpdte extends JDialog implements ActionListener {
     label5 = new JLabel("  Salary     ");
     //textField
     wbk1 = new JTextField(5);
-    wbk1.setText((String) student.getValueAt(row, 0).toString());
+    wbk1.setText((String) member.getValueAt(row, 0).toString());
     wbk1.setEditable(false);
     wbk2 = new JTextField(5);
-    wbk2.setText((String) student.getValueAt(row, 1));
+    wbk2.setText((String) member.getValueAt(row, 1));
     wbk3 = new JTextField(5);
-    wbk3.setText((String) student.getValueAt(row, 2));
+    wbk3.setText((String) member.getValueAt(row, 2));
     wbk4 = new JTextField(5);
-    wbk4.setText((String) student.getValueAt(row, 3).toString());
+    wbk4.setText((String) member.getValueAt(row, 3).toString());
     wbk5 = new JTextField(5);
-    wbk5.setText((String) student.getValueAt(row, 4).toString());
+    wbk5.setText((String) member.getValueAt(row, 4).toString());
     //button
     an1 = new JButton("update");
     an1.addActionListener(this);
@@ -82,15 +82,6 @@ public class MycelInfoUpdte extends JDialog implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent e) {
     if (e.getActionCommand().equals("update1")) {
-      //对输入的内容进行判断，如果错误提示相应内容，否则无法保存
-      //			if(!(wbk1.getText().getClass().getName().equals("java.lang.int"))
-      //					||!(wbk2.getText().getClass().getName().equals("java.lang.String"))
-      //					||!(wbk3.getText().getClass().getName().equals("java.lang.String"))
-      //					||!(wbk4.getText().getClass().getName().equals("java.sql.Date"))
-      //					||!(wbk5.getText().getClass().getName().equals("java.lang.Float"))){
-      //				JOptionPane.showMessageDialog(this, "请输入正确的数据类型"+"\n"+"工号类型（int）"+"\n"+"姓名类型（String）"+
-      //					"\n"+"工作类型（String）"+"\n"+"时间类型（如2017-07-24）"+"\n"+"工资类型（float）");
-      //			}
       java.sql.PreparedStatement ps = null;
       java.sql.Connection ct = null;
       ResultSet rs = null;

@@ -1,4 +1,4 @@
-package com.mycel;
+package com.mycel.view;
 
 import javax.swing.table.AbstractTableModel;
 import java.sql.DriverManager;

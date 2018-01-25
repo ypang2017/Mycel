@@ -10,7 +10,17 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>mycel-view</module>
+        <module>mycel-Excel</module>
+        <module>DataStore</module>
     </modules>
 
-
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>1.2.17</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>

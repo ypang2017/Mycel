@@ -1,4 +1,6 @@
-com/mycel/MycelInfoAdd.class
-com/mycel/MycelSystem.class
-com/mycel/MycelInfoUpdte.class
-com/mycel/MycelInfo.class
+com/mycel/view/TableFactory.class
+com/mycel/view/MycelInfoUpdte.class
+com/mycel/view/MycelSystem.class
+com/mycel/view/MycelInfo.class
+com/mycel/view/MycelTable.class
+com/mycel/view/MycelInfoAdd.class

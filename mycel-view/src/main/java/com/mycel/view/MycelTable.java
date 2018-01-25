@@ -1,11 +1,12 @@
-package com.mycel;
+package com.mycel.view;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 
-public class MycelSystem extends JFrame implements ActionListener {
+public class MycelTable extends JFrame implements ActionListener {
+  private String tableName;
   JPanel mb1, mb2;
   JLabel label;
   JTextField textField;
@@ -14,7 +15,8 @@ public class MycelSystem extends JFrame implements ActionListener {
   JScrollPane rollPane;
   MycelInfo mycelInfo;
 
-  public MycelSystem() {
+  public MycelTable(String tableName) {
+    this.tableName = tableName;
     //add first panel
     mb1 = new JPanel();
     label = new JLabel("Please enter the name");
@@ -48,7 +50,7 @@ public class MycelSystem extends JFrame implements ActionListener {
     this.add(mb1, "North");
     this.add(mb2, "South");
 
-    this.setTitle("Mycel management system");
+    this.setTitle("Table:" + tableName);
     this.setSize(500, 400);
     this.setLocation(400, 200);
     this.setResizable(false);
@@ -57,7 +59,7 @@ public class MycelSystem extends JFrame implements ActionListener {
   }
 
   public static void main(String[] args) {
-    MycelSystem system = new MycelSystem();
+    MycelTable table = new MycelTable("member");
   }
 
   @Override

@@ -1,4 +1,4 @@
-package com.mycel;
+package com.mycel.view;
 
 import javax.swing.*;
 import java.awt.*;
@@ -77,23 +77,6 @@ public class MycelInfoAdd extends JDialog implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent e) {
     if (e.getActionCommand().equals("add1")) {
-
-
-      //			对输入的内容进行判断，如果错误提示相应内容，否则无法保存
-//			if(!(wbk1.getText().getClass().getName().equals("java.lang.String"))){
-//				JOptionPane.showMessageDialog(this, "请输入正确的数据类型"+"\n"+"工号类型（int）"+"\n"+"姓名类型（String）"+
-//						"\n"+"工作类型（String）"+"\n"+"时间类型（如2017-07-24）"+"\n"+"工资类型（float）");
-//			}
-//						if(!(wbk1.getText().getClass().getName().equals("java.lang.String"))
-//								||!(wbk2.getText().getClass().getName().equals("java.lang.String"))
-//								||!(wbk3.getText().getClass().getName().equals("java.lang.String"))
-//								||!(wbk4.getText().getClass().getName().equals("java.lang.String"))
-//								||!(wbk5.getText().getClass().getName().equals("java.lang.String"))){
-//							JOptionPane.showMessageDialog(this, "请输入正确的数据类型"+"\n"+"工号类型（int）"+"\n"+"姓名类型（String）"+
-//									"\n"+"工作类型（String）"+"\n"+"时间类型（如2017-07-24）"+"\n"+"工资类型（float）");
-//						}
-
-
       java.sql.PreparedStatement ps = null;
       java.sql.Connection ct = null;
       ResultSet rs = null;
