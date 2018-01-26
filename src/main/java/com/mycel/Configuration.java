@@ -1,4 +1,4 @@
-package com.mycel.conf;
+package com.mycel;
 
 import org.apache.log4j.Logger;
 
