@@ -8,15 +8,18 @@
     <artifactId>mycel-project</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+
     <modules>
+        <module>mycel-common</module>
         <module>mycel-view</module>
         <module>mycel-Excel</module>
         <module>DataStore</module>
     </modules>
+    
     <dependencies>
         <dependency>
             <groupId>log4j</groupId>
-            <artifactId>apache-log4j-extras</artifactId>
+            <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
     </dependencies>

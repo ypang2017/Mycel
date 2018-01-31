@@ -1,4 +1,4 @@
-package com.mycel;
+package com.mycel.DataStore;
 
 public class DataStoreException extends Exception {
   

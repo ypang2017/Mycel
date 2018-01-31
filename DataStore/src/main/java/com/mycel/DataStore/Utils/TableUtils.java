@@ -1,14 +1,13 @@
-package com.mycel.Utils;
+package com.mycel.DataStore.Utils;
 
 import com.mycel.DataStore.DataStore;
-import com.mycel.DataStoreException;
+import com.mycel.DataStore.DataStoreException;
+import com.mycel.common.Configuration;
 import com.mysql.jdbc.NonRegisteringDriver;
 import org.apache.log4j.Logger;
 
-import javax.security.auth.login.Configuration;
 import java.io.File;
 import java.io.FileInputStream;
-import java.net.URL;
 import java.sql.*;
 import java.util.*;
 
@@ -145,11 +144,7 @@ public class TableUtils {
    */
   public static DataStore getDBAdapter(
     Configuration conf) throws DataStoreException {
-    URL pathUrl = ClassLoader.getSystemResource("");
-    String path = pathUrl.getPath();
-
-    String fileName = "core-site.xml";
-    String confPath = path + fileName;
+    String confPath = conf.getConfPath("database");
     File confFile = new File(confPath);
     if (confFile.exists()) {
       Properties p = new Properties();
@@ -165,8 +160,7 @@ public class TableUtils {
               throw new DataStoreException(
                 String.format(
                   "The database %s in mysql is for DB system use, "
-                    + "please appoint other database in core-site.xml.",
-                  name));
+                    + "please appoint other database in " + confPath));
             }
           }
         }
@@ -174,38 +168,16 @@ public class TableUtils {
       } catch (Exception e) {
         if (e instanceof InvalidPropertiesFormatException) {
           throw new DataStoreException(
-            "Malformat core-site.xml, please check the file.", e);
+            "Malformat " + confPath + ", please check the file.", e);
         } else {
           throw new DataStoreException(e);
         }
       }
-    }
-
-    else {
-      LOG.info("DB connection config file " + confPath
+    } else {
+      LOG.error("DB connection config file " + confPath
         + " NOT found.");
     }
-    // Get Default configure from core-site-template.xml
-    fileName = "core-site-template.xml";
-    confPath = path + fileName;
-    LOG.info("Expected DB connection configuration path = "
-      + confPath);
-    confFile = new File(confPath);
-    LOG.info("Using configure file: " + confPath);
-    Properties p = new Properties();
-    try {
-      p.loadFromXML(new FileInputStream(confFile));
-    } catch (Exception e) {
-      throw new DataStoreException(e);
-    }
-    String url = "mycel.datastore.db.url";
-    if (url != null) {
-      p.setProperty("url", url);
-    }
-    for (String key : p.stringPropertyNames()) {
-      LOG.info("\t" + key + " = " + p.getProperty(key));
-    }
-    return new DataStore();
+    return null;
   }
 
   public static Integer getKey(Map<Integer, String> map, String value) {

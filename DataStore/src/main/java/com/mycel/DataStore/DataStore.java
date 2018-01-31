@@ -1,10 +1,9 @@
 package com.mycel.DataStore;
 
-import com.mycel.DataStoreException;
-import com.mycel.Utils.TableUtils;
+import com.mycel.DataStore.Utils.TableUtils;
+import com.mycel.common.Configuration;
 import com.mysql.jdbc.Connection;
 import org.apache.log4j.Logger;
-import org.apache.log4j.spi.LoggerFactory;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -18,6 +17,11 @@ import static org.apache.log4j.receivers.db.DBHelper.closeConnection;
 
 public class DataStore {
   static final Logger LOG = Logger.getLogger(DataStore.class);
+  static Configuration conf;
+
+  public DataStore() {
+    
+  }
 
   public void dropAllTables() throws DataStoreException, SQLException {
     Connection conn = (Connection) DriverManager.getConnection(
