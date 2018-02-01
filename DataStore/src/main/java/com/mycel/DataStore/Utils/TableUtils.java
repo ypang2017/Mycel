@@ -127,58 +127,59 @@ public class TableUtils {
     }
   }
 
-  public static void formatDatabase(Configuration conf) throws DataStoreException, SQLException {
-    getDBAdapter(conf).formatDataBase();
-  }
+//  public static void formatDatabase(Configuration conf) throws DataStoreException, SQLException {
+//    getDBAdapter(conf).formatDataBase();
+//  }
+//
+//  public static void checkTables(Configuration conf) throws DataStoreException, SQLException {
+//    getDBAdapter(conf).checkTables();
+//  }
 
-  public static void checkTables(Configuration conf) throws DataStoreException, SQLException {
-    getDBAdapter(conf).checkTables();
-  }
-
-  /**
-   * Adapter
-   *
-   * @param conf configuration from the core-site.xml
-   * @return
-   * @throws DataStoreException
-   */
-  public static DataStore getDBAdapter(
-    Configuration conf) throws DataStoreException {
-    String confPath = conf.getConfPath("database");
-    File confFile = new File(confPath);
-    if (confFile.exists()) {
-      Properties p = new Properties();
-      try {
-        p.loadFromXML(new FileInputStream(confFile));
-        String url = String.format("jdbc:mysql://127.0.0.1:%s", 3306);
-        String purl = p.getProperty("url");
-        if (purl.startsWith(TableUtils.MYSQL_URL_PREFIX)) {
-          //
-          String dbName = getMysqlDBName(purl);
-          for (String name : DB_NAME_NOT_ALLOWED) {
-            if (dbName.equals(name)) {
-              throw new DataStoreException(
-                String.format(
-                  "The database %s in mysql is for DB system use, "
-                    + "please appoint other database in " + confPath));
-            }
-          }
-        }
-        return new DataStore();
-      } catch (Exception e) {
-        if (e instanceof InvalidPropertiesFormatException) {
-          throw new DataStoreException(
-            "Malformat " + confPath + ", please check the file.", e);
-        } else {
-          throw new DataStoreException(e);
-        }
-      }
-    } else {
-      LOG.error("DB connection config file " + confPath
-        + " NOT found.");
-    }
-    return null;
-  }
+//  /**
+//   * Adapter
+//   *
+//   * @param conf configuration from the database-site.xml
+//   * @return
+//   * @throws DataStoreException
+//   */
+//  public static DataStore getDBAdapter(
+//    Configuration conf) throws DataStoreException {
+////    String confPath = conf.getConfPath("database");
+//    String confPath = "./conf/database.xml";
+//    File confFile = new File(confPath);
+//    if (confFile.exists()) {
+//      Properties p = new Properties();
+//      try {
+//        p.loadFromXML(new FileInputStream(confFile));
+//        String url = String.format("jdbc:mysql://127.0.0.1:%s", 3306);
+//        String purl = p.getProperty("url");
+//        if (purl.startsWith(TableUtils.MYSQL_URL_PREFIX)) {
+//          //
+//          String dbName = getMysqlDBName(purl);
+//          for (String name : DB_NAME_NOT_ALLOWED) {
+//            if (dbName.equals(name)) {
+//              throw new DataStoreException(
+//                String.format(
+//                  "The database %s in mysql is for DB system use, "
+//                    + "please appoint other database in " + confPath));
+//            }
+//          }
+//        }
+//        return new DataStore();
+//      } catch (Exception e) {
+//        if (e instanceof InvalidPropertiesFormatException) {
+//          throw new DataStoreException(
+//            "Malformat " + confPath + ", please check the file.", e);
+//        } else {
+//          throw new DataStoreException(e);
+//        }
+//      }
+//    } else {
+//      LOG.error("DB connection config file " + confPath
+//        + " NOT found.");
+//    }
+//    return null;
+//  }
 
   public static Integer getKey(Map<Integer, String> map, String value) {
     for (Integer key : map.keySet()) {

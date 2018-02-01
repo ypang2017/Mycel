@@ -1,5 +1,7 @@
 package com.mycel.view;
 
+import com.mycel.DataStore.DataStore;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -77,13 +79,15 @@ public class MycelInfoAdd extends JDialog implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent e) {
     if (e.getActionCommand().equals("add1")) {
+      DataStore dataStore = new DataStore();
       java.sql.PreparedStatement ps = null;
       java.sql.Connection ct = null;
       ResultSet rs = null;
       Statement sm = null;
       try {
-        Class.forName("com.mysql.jdbc.Driver");
-        ct = DriverManager.getConnection("jdbc:mysql://localhost:3306/mycel", "root", "331602");
+        Class.forName(dataStore.getDriverClass());
+        ct = DriverManager.getConnection(dataStore.getUrl(),
+                                         dataStore.getUsername(), dataStore.getPassword());
         String ss = ("insert into member values(?,?,?,?,?)");
         ps = ct.prepareStatement(ss);
         ps.setString(1, wbk1.getText());

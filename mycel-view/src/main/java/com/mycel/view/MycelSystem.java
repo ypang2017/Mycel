@@ -1,5 +1,7 @@
 package com.mycel.view;
 
+import com.mycel.DataStore.DataStore;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -99,13 +101,15 @@ public class MycelSystem extends JFrame implements ActionListener {
         return;
       }
       String string = (String) mycelInfo.getValueAt(i, 0).toString();
+      DataStore dataStore = new DataStore();
       PreparedStatement ps = null;
       Connection ct = null;
       ResultSet rs = null;
       Statement sm = null;
       try {
-        Class.forName("com.mysql.jdbc.Driver");
-        ct = DriverManager.getConnection("jdbc:mysql://localhost:3306/mycel", "root", "331602");
+        Class.forName(dataStore.getDriverClass());
+        ct = DriverManager.getConnection(dataStore.getUrl(),
+                                         dataStore.getUsername(), dataStore.getPassword());
         String ss = ("delete from mycel where Id=?");
         ps = ct.prepareStatement(ss);
         ps.setString(1, string);

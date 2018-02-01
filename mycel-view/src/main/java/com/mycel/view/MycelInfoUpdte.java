@@ -1,5 +1,6 @@
 package com.mycel.view;
 
+import com.mycel.DataStore.DataStore;
 import com.mysql.jdbc.Statement;
 
 import javax.swing.*;
@@ -82,13 +83,15 @@ public class MycelInfoUpdte extends JDialog implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent e) {
     if (e.getActionCommand().equals("update1")) {
+      DataStore dataStore = new DataStore();
       java.sql.PreparedStatement ps = null;
       java.sql.Connection ct = null;
       ResultSet rs = null;
       Statement sm = null;
       try {
-        Class.forName("com.mysql.jdbc.Driver");
-        ct = DriverManager.getConnection("jdbc:mysql://localhost:3306/mycel", "root", "331602");
+        Class.forName(dataStore.getDriverClass());
+        ct = DriverManager.getConnection(dataStore.getUrl(),
+                                         dataStore.getUsername(), dataStore.getPassword());
         String ss = ("update member set Name=?,Position=?,Join_time=?,Salary=? where Id=?");
         ps = ct.prepareStatement(ss);
         ps.setString(1, wbk2.getText());

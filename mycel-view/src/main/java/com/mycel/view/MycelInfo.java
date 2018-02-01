@@ -1,5 +1,7 @@
 package com.mycel.view;
 
+import com.mycel.DataStore.DataStore;
+
 import javax.swing.table.AbstractTableModel;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -40,6 +42,7 @@ public class MycelInfo extends AbstractTableModel {
   }
 
   private void sqlname(String sql) {
+    DataStore dataStore = new DataStore();
     field = new Vector();
     field.add("Id");
     field.add("Name");
@@ -50,9 +53,10 @@ public class MycelInfo extends AbstractTableModel {
     record = new Vector();
 
     try {
-      Class.forName("com.mysql.jdbc.Driver");
+      Class.forName(dataStore.getDriverClass());
       try {
-        ct = DriverManager.getConnection("jdbc:mysql://localhost:3306/mycel", "root", "331602");
+        ct = DriverManager.getConnection(dataStore.getUrl(),
+                                         dataStore.getUsername(), dataStore.getPassword());
         ps = ct.prepareStatement(sql);
         rs = ps.executeQuery();
         while (rs.next()) {
@@ -84,7 +88,6 @@ public class MycelInfo extends AbstractTableModel {
           e.printStackTrace();
         }
       }
-
     }
   }
 }
