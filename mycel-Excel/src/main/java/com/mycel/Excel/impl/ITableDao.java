@@ -1,26 +1,24 @@
 package com.mycel.Excel.impl;
 
-import com.mycel.Excel.MemEntity;
-
-import java.util.List;
+import java.sql.ResultSet;
 
 /**
  * The dao interface 
  */
 public interface ITableDao {
-  public List<MemEntity> findAll();
-
-  public IEntity findById(String id);
-
-  public void update(IEntity entity);
-
-  public void add(IEntity entity);
-
-  public void delete(String id);
-
-  public IEntity findByIdAndPassword(String id, String password);
-
-  public void updatePassword(String id, String password);
-
-  IEntity findByTablename(String tablename);
+  /**
+   * Query
+   * @param sql
+   * @param str
+   * @return
+   */
+  public ResultSet search(String sql, String str[]);
+  
+  /**
+   * Add,delete,update
+   * @param sql
+   * @param str
+   * @return
+   */
+  public int addU(String sql, String[] str);
 }

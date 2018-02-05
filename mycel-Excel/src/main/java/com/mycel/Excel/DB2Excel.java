@@ -13,7 +13,7 @@ import static jxl.Workbook.createWorkbook;
 
 public class DB2Excel {
   public static void main(String[] args) {
-    MemService memService = new MemService();
+    MemDBService memService = new MemDBService();
     try {
       WritableWorkbook wwb = null;
 
@@ -30,9 +30,9 @@ public class DB2Excel {
       WritableSheet ws = wwb.createSheet("Test Shee 1", 0);
 
       // Query all data from the database
-      List<MemEntity> list = (List<MemEntity>) memService.findAll();
+      List<MemEntity> list = (List<MemEntity>) memService.searchAll();
       // Use the defaut number "0" as the first column in Excel
-      Label labelId = new Label(0, 0, "编号(id)");//
+      Label labelId = new Label(0, 0, "编号(id)");
       Label labelName = new Label(1, 0, "姓名(name)");
       Label labelPostion = new Label(2, 0, "位置(position)");
       Label labelJoinTime = new Label(3, 0, "时间(date)");
