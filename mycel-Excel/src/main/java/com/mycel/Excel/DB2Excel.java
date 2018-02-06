@@ -7,6 +7,7 @@ import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.util.List;
 
 import static jxl.Workbook.createWorkbook;
@@ -19,9 +20,11 @@ public class DB2Excel {
 
       // Create a Excel workbook
       String fileName = "/home/hadoop/work/mycel/Mycel/mysql.xls";
+      String defaultFileName = "/home/hadoop/work/mycel/Mycel/mysql_default.xls";
       File file = new File(fileName);
+      File defaultFile = new File(defaultFileName);
       if (!file.exists()) {
-        file.createNewFile();
+        Files.copy(defaultFile.toPath(), file.toPath());
       }
       // Create Workbook with fileName
       wwb = Workbook.createWorkbook(file);
